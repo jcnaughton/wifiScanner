@@ -1,0 +1,31 @@
+<html>
+      <head>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+      <script type="text/javascript" src="jquery.qrcode.min.js"></script>
+      <script type="text/javascript">
+            google.charts.load('current', {'packages':['corechart','line']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+      const rawData = [['location', 'link', 'level', 'noise'], ['1', 70, 40, 256], ['2', 70, 40, 256], ['3', 70, 40, 256], ['4', 70, 40, 256], ['5', 70, 40, 256]];
+      var rawDataStr ="[['location', 'link', 'level', 'noise'], ['1', 70, 40, 256], ['2', 70, 40, 256], ['3', 70, 40, 256], ['4', 70, 40, 256], ['5', 70, 40, 256]]";
+      document.getElementById("raw_div").innerHTML = rawDataStr;
+      var data = google.visualization.arrayToDataTable(rawData);
+            var options = {
+              chart:
+      {          title: 'Wifi Signal',
+              }
+      ,        width: 900,
+              height: 500
+            };
+      var chart = new google.charts.Line(document.getElementById('chart_div'));
+      chart.draw(data, google.charts.Line.convertOptions(options));
+      jQuery('#qr_div').qrcode(rawDataStr);
+      }
+      </script>
+      <body>
+      <div id="chart_div" style="width: 900px; height: 500px"></div>
+      <div id="raw_div"></div>
+      <div id="qr_div"></div>
+      </body>
+      </html>
